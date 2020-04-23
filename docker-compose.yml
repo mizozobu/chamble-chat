@@ -1,0 +1,28 @@
+version : '3.6'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: chamble_mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - chamble_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: chamble_phpmyadmin
+    ports:
+      - 8888:80
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+    networks:
+      - chamble_network
+  
+networks:
+  chamble_network:
+    driver: bridge
