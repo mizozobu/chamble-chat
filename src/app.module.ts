@@ -12,7 +12,7 @@ import { MathService } from './math.service';
         '.env',
       ],
       isGlobal: true,
-    })
+    }),
   ],
   controllers: [AppController],
   providers: [MathService],
