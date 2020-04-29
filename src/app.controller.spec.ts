@@ -1,22 +1,24 @@
-// import { Test, TestingModule } from '@nestjs/testing';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppController } from './app.controller';
+import { appModuleMetadata } from './app.module';
 
-// describe('AppController', () => {
-//   let appController: AppController;
+describe('AppController', () => {
+  let nestApp: TestingModule;
+  let appController: AppController;
 
-//   beforeEach(async () => {
-//     const app: TestingModule = await Test.createTestingModule({
-//       controllers: [AppController],
-//       providers: [AppService],
-//     }).compile();
+  beforeAll(async () => {
+    nestApp = await Test.createTestingModule(appModuleMetadata).compile();
 
-//     appController = app.get<AppController>(AppController);
-//   });
+    appController = nestApp.get<AppController>(AppController);
+  });
 
-//   describe('root', () => {
-//     it('should return "Hello World!"', () => {
-//       expect(appController.getHello()).toBe('Hello World!');
-//     });
-//   });
-// });
+  afterAll(async () => {
+    await nestApp.close();
+  });
+
+  it('accumulate"', () => {
+    expect(appController.accumulate({ data: [1, 2, 3, 4, 5] })).toEqual({
+      sum: 15,
+    });
+  });
+});

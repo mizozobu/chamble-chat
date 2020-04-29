@@ -6,6 +6,8 @@ package app;
 service AppController {
   // Declare an rpc for each method that is called via gRPC
   rpc Accumulate (NumberArray) returns (SumOfNumberArray);
+  rpc AccumulateStream(stream NumberArray) returns(stream SumOfNumberArray);
+  rpc AccumulateStreamPass(stream NumberArray) returns(stream SumOfNumberArray);
 }
 
 // Declare the types used above

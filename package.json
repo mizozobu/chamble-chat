@@ -27,6 +27,7 @@
     "@nestjs/config": "^0.4.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/microservices": "^7.0.8",
+    "@nestjs/platform-express": "^7.0.9",
     "grpc": "^1.24.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -57,19 +58,5 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }

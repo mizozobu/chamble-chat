@@ -17,10 +17,7 @@ const microserviceOptions: GrpcOptions = {
 };
 
 (async function bootstrap(): Promise<void> {
-  const app = await NestFactory.createMicroservice(
-    AppModule,
-    microserviceOptions,
-  );
+  const app = await NestFactory.createMicroservice(AppModule, microserviceOptions);
   app.listen(() => {
     logger.log(`Microservice is listening on ${process.env.APP_PORT}`);
   });

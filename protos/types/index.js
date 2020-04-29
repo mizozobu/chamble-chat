@@ -83,6 +83,72 @@ $root.app = (function() {
          * @variation 2
          */
 
+        /**
+         * Callback as used by {@link app.AppController#accumulateStream}.
+         * @memberof app.AppController
+         * @typedef AccumulateStreamCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {app.SumOfNumberArray} [response] SumOfNumberArray
+         */
+
+        /**
+         * Calls AccumulateStream.
+         * @function accumulateStream
+         * @memberof app.AppController
+         * @instance
+         * @param {app.INumberArray} request NumberArray message or plain object
+         * @param {app.AppController.AccumulateStreamCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(AppController.prototype.accumulateStream = function accumulateStream(request, callback) {
+            return this.rpcCall(accumulateStream, $root.app.NumberArray, $root.app.SumOfNumberArray, request, callback);
+        }, "name", { value: "AccumulateStream" });
+
+        /**
+         * Calls AccumulateStream.
+         * @function accumulateStream
+         * @memberof app.AppController
+         * @instance
+         * @param {app.INumberArray} request NumberArray message or plain object
+         * @returns {Promise<app.SumOfNumberArray>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link app.AppController#accumulateStreamPass}.
+         * @memberof app.AppController
+         * @typedef AccumulateStreamPassCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {app.SumOfNumberArray} [response] SumOfNumberArray
+         */
+
+        /**
+         * Calls AccumulateStreamPass.
+         * @function accumulateStreamPass
+         * @memberof app.AppController
+         * @instance
+         * @param {app.INumberArray} request NumberArray message or plain object
+         * @param {app.AppController.AccumulateStreamPassCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(AppController.prototype.accumulateStreamPass = function accumulateStreamPass(request, callback) {
+            return this.rpcCall(accumulateStreamPass, $root.app.NumberArray, $root.app.SumOfNumberArray, request, callback);
+        }, "name", { value: "AccumulateStreamPass" });
+
+        /**
+         * Calls AccumulateStreamPass.
+         * @function accumulateStreamPass
+         * @memberof app.AppController
+         * @instance
+         * @param {app.INumberArray} request NumberArray message or plain object
+         * @returns {Promise<app.SumOfNumberArray>} Promise
+         * @variation 2
+         */
+
         return AppController;
     })();
 
