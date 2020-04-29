@@ -12,7 +12,7 @@ const microserviceOptions: GrpcOptions = {
   options: {
     url: `${process.env.APP_HOST}:${process.env.APP_PORT}`,
     package: 'app',
-    protoPath: join(__dirname, '../src/app.proto'),
+    protoPath: join(__dirname, '../protos/app.proto'),
   },
 };
 
