@@ -1,14 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-import { Transport } from '@nestjs/microservices';
+import { Transport, GrpcOptions } from '@nestjs/microservices';
 import { join } from 'path';
 
 const logger = new Logger('Main');
-const microserviceOptions = {
+
+// strict type checking
+const microserviceOptions: GrpcOptions = {
   transport: Transport.GRPC,
   options: {
-    url: 'localhost:5000',
+    url: `${process.env.APP_HOST}:${process.env.APP_PORT}`,
     package: 'app',
     protoPath: join(__dirname, '../src/app.proto'),
   },
@@ -17,6 +19,6 @@ const microserviceOptions = {
 !async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, microserviceOptions);
   app.listen(() => {
-    logger.log('Microservice is listening...');
+    logger.log(`Microservice is listening on ${process.env.APP_PORT}`);
   });
 }()

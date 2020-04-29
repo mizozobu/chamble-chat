@@ -1,3 +1,1 @@
-grpcurl -d '{"champion_id": 1}' -plaintext -proto ./rpc/rpc.proto -import-path ./protos 127.0.0.1:5000 rpc.Rpc/GetChampion
-
-127.0.0.1:5000
+grpcurl -d '{"data": [41,4,5]}' -plaintext -proto ./src/app.proto -import-path ./src localhost:5000 app.AppController/Accumulate
