@@ -1,24 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { appModuleMetadata } from './app.module';
 
-describe('AppController', () => {
-  let nestApp: TestingModule;
-  let appController: AppController;
+describe('App Controller', () => {
+  let controller: AppController;
 
-  beforeAll(async () => {
-    nestApp = await Test.createTestingModule(appModuleMetadata).compile();
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+    }).compile();
 
-    appController = nestApp.get<AppController>(AppController);
+    controller = module.get<AppController>(AppController);
   });
 
-  afterAll(async () => {
-    await nestApp.close();
-  });
-
-  it('accumulate"', () => {
-    expect(appController.accumulate({ data: [1, 2, 3, 4, 5] })).toEqual({
-      sum: 15,
-    });
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
   });
 });

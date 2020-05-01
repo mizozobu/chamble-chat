@@ -9,165 +9,165 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-$root.app = (function() {
+$root.test = (function() {
 
     /**
-     * Namespace app.
-     * @exports app
+     * Namespace test.
+     * @exports test
      * @namespace
      */
-    var app = {};
+    var test = {};
 
-    app.AppController = (function() {
+    test.TestController = (function() {
 
         /**
-         * Constructs a new AppController service.
-         * @memberof app
-         * @classdesc Represents an AppController
+         * Constructs a new TestController service.
+         * @memberof test
+         * @classdesc Represents a TestController
          * @extends $protobuf.rpc.Service
          * @constructor
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function AppController(rpcImpl, requestDelimited, responseDelimited) {
+        function TestController(rpcImpl, requestDelimited, responseDelimited) {
             $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
         }
 
-        (AppController.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = AppController;
+        (TestController.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = TestController;
 
         /**
-         * Creates new AppController service using the specified rpc implementation.
+         * Creates new TestController service using the specified rpc implementation.
          * @function create
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @static
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {AppController} RPC service. Useful where requests and/or responses are streamed.
+         * @returns {TestController} RPC service. Useful where requests and/or responses are streamed.
          */
-        AppController.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+        TestController.create = function create(rpcImpl, requestDelimited, responseDelimited) {
             return new this(rpcImpl, requestDelimited, responseDelimited);
         };
 
         /**
-         * Callback as used by {@link app.AppController#accumulate}.
-         * @memberof app.AppController
+         * Callback as used by {@link test.TestController#accumulate}.
+         * @memberof test.TestController
          * @typedef AccumulateCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {app.SumOfNumberArray} [response] SumOfNumberArray
+         * @param {test.SumOfNumberArray} [response] SumOfNumberArray
          */
 
         /**
          * Calls Accumulate.
          * @function accumulate
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @instance
-         * @param {app.INumberArray} request NumberArray message or plain object
-         * @param {app.AppController.AccumulateCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @param {test.INumberArray} request NumberArray message or plain object
+         * @param {test.TestController.AccumulateCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(AppController.prototype.accumulate = function accumulate(request, callback) {
-            return this.rpcCall(accumulate, $root.app.NumberArray, $root.app.SumOfNumberArray, request, callback);
+        Object.defineProperty(TestController.prototype.accumulate = function accumulate(request, callback) {
+            return this.rpcCall(accumulate, $root.test.NumberArray, $root.test.SumOfNumberArray, request, callback);
         }, "name", { value: "Accumulate" });
 
         /**
          * Calls Accumulate.
          * @function accumulate
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @instance
-         * @param {app.INumberArray} request NumberArray message or plain object
-         * @returns {Promise<app.SumOfNumberArray>} Promise
+         * @param {test.INumberArray} request NumberArray message or plain object
+         * @returns {Promise<test.SumOfNumberArray>} Promise
          * @variation 2
          */
 
         /**
-         * Callback as used by {@link app.AppController#accumulateStream}.
-         * @memberof app.AppController
+         * Callback as used by {@link test.TestController#accumulateStream}.
+         * @memberof test.TestController
          * @typedef AccumulateStreamCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {app.SumOfNumberArray} [response] SumOfNumberArray
+         * @param {test.SumOfNumberArray} [response] SumOfNumberArray
          */
 
         /**
          * Calls AccumulateStream.
          * @function accumulateStream
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @instance
-         * @param {app.INumberArray} request NumberArray message or plain object
-         * @param {app.AppController.AccumulateStreamCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @param {test.INumberArray} request NumberArray message or plain object
+         * @param {test.TestController.AccumulateStreamCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(AppController.prototype.accumulateStream = function accumulateStream(request, callback) {
-            return this.rpcCall(accumulateStream, $root.app.NumberArray, $root.app.SumOfNumberArray, request, callback);
+        Object.defineProperty(TestController.prototype.accumulateStream = function accumulateStream(request, callback) {
+            return this.rpcCall(accumulateStream, $root.test.NumberArray, $root.test.SumOfNumberArray, request, callback);
         }, "name", { value: "AccumulateStream" });
 
         /**
          * Calls AccumulateStream.
          * @function accumulateStream
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @instance
-         * @param {app.INumberArray} request NumberArray message or plain object
-         * @returns {Promise<app.SumOfNumberArray>} Promise
+         * @param {test.INumberArray} request NumberArray message or plain object
+         * @returns {Promise<test.SumOfNumberArray>} Promise
          * @variation 2
          */
 
         /**
-         * Callback as used by {@link app.AppController#accumulateStreamPass}.
-         * @memberof app.AppController
+         * Callback as used by {@link test.TestController#accumulateStreamPass}.
+         * @memberof test.TestController
          * @typedef AccumulateStreamPassCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {app.SumOfNumberArray} [response] SumOfNumberArray
+         * @param {test.SumOfNumberArray} [response] SumOfNumberArray
          */
 
         /**
          * Calls AccumulateStreamPass.
          * @function accumulateStreamPass
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @instance
-         * @param {app.INumberArray} request NumberArray message or plain object
-         * @param {app.AppController.AccumulateStreamPassCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @param {test.INumberArray} request NumberArray message or plain object
+         * @param {test.TestController.AccumulateStreamPassCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(AppController.prototype.accumulateStreamPass = function accumulateStreamPass(request, callback) {
-            return this.rpcCall(accumulateStreamPass, $root.app.NumberArray, $root.app.SumOfNumberArray, request, callback);
+        Object.defineProperty(TestController.prototype.accumulateStreamPass = function accumulateStreamPass(request, callback) {
+            return this.rpcCall(accumulateStreamPass, $root.test.NumberArray, $root.test.SumOfNumberArray, request, callback);
         }, "name", { value: "AccumulateStreamPass" });
 
         /**
          * Calls AccumulateStreamPass.
          * @function accumulateStreamPass
-         * @memberof app.AppController
+         * @memberof test.TestController
          * @instance
-         * @param {app.INumberArray} request NumberArray message or plain object
-         * @returns {Promise<app.SumOfNumberArray>} Promise
+         * @param {test.INumberArray} request NumberArray message or plain object
+         * @returns {Promise<test.SumOfNumberArray>} Promise
          * @variation 2
          */
 
-        return AppController;
+        return TestController;
     })();
 
-    app.NumberArray = (function() {
+    test.NumberArray = (function() {
 
         /**
          * Properties of a NumberArray.
-         * @memberof app
+         * @memberof test
          * @interface INumberArray
          * @property {Array.<number>|null} [data] NumberArray data
          */
 
         /**
          * Constructs a new NumberArray.
-         * @memberof app
+         * @memberof test
          * @classdesc Represents a NumberArray.
          * @implements INumberArray
          * @constructor
-         * @param {app.INumberArray=} [properties] Properties to set
+         * @param {test.INumberArray=} [properties] Properties to set
          */
         function NumberArray(properties) {
             this.data = [];
@@ -180,7 +180,7 @@ $root.app = (function() {
         /**
          * NumberArray data.
          * @member {Array.<number>} data
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @instance
          */
         NumberArray.prototype.data = $util.emptyArray;
@@ -188,21 +188,21 @@ $root.app = (function() {
         /**
          * Creates a new NumberArray instance using the specified properties.
          * @function create
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
-         * @param {app.INumberArray=} [properties] Properties to set
-         * @returns {app.NumberArray} NumberArray instance
+         * @param {test.INumberArray=} [properties] Properties to set
+         * @returns {test.NumberArray} NumberArray instance
          */
         NumberArray.create = function create(properties) {
             return new NumberArray(properties);
         };
 
         /**
-         * Encodes the specified NumberArray message. Does not implicitly {@link app.NumberArray.verify|verify} messages.
+         * Encodes the specified NumberArray message. Does not implicitly {@link test.NumberArray.verify|verify} messages.
          * @function encode
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
-         * @param {app.INumberArray} message NumberArray message or plain object to encode
+         * @param {test.INumberArray} message NumberArray message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -219,11 +219,11 @@ $root.app = (function() {
         };
 
         /**
-         * Encodes the specified NumberArray message, length delimited. Does not implicitly {@link app.NumberArray.verify|verify} messages.
+         * Encodes the specified NumberArray message, length delimited. Does not implicitly {@link test.NumberArray.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
-         * @param {app.INumberArray} message NumberArray message or plain object to encode
+         * @param {test.INumberArray} message NumberArray message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -234,18 +234,18 @@ $root.app = (function() {
         /**
          * Decodes a NumberArray message from the specified reader or buffer.
          * @function decode
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {app.NumberArray} NumberArray
+         * @returns {test.NumberArray} NumberArray
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
         NumberArray.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.NumberArray();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.test.NumberArray();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -270,10 +270,10 @@ $root.app = (function() {
         /**
          * Decodes a NumberArray message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {app.NumberArray} NumberArray
+         * @returns {test.NumberArray} NumberArray
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
@@ -286,7 +286,7 @@ $root.app = (function() {
         /**
          * Verifies a NumberArray message.
          * @function verify
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -307,18 +307,18 @@ $root.app = (function() {
         /**
          * Creates a NumberArray message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {app.NumberArray} NumberArray
+         * @returns {test.NumberArray} NumberArray
          */
         NumberArray.fromObject = function fromObject(object) {
-            if (object instanceof $root.app.NumberArray)
+            if (object instanceof $root.test.NumberArray)
                 return object;
-            var message = new $root.app.NumberArray();
+            var message = new $root.test.NumberArray();
             if (object.data) {
                 if (!Array.isArray(object.data))
-                    throw TypeError(".app.NumberArray.data: array expected");
+                    throw TypeError(".test.NumberArray.data: array expected");
                 message.data = [];
                 for (var i = 0; i < object.data.length; ++i)
                     message.data[i] = Number(object.data[i]);
@@ -329,9 +329,9 @@ $root.app = (function() {
         /**
          * Creates a plain object from a NumberArray message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @static
-         * @param {app.NumberArray} message NumberArray
+         * @param {test.NumberArray} message NumberArray
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
@@ -352,7 +352,7 @@ $root.app = (function() {
         /**
          * Converts this NumberArray to JSON.
          * @function toJSON
-         * @memberof app.NumberArray
+         * @memberof test.NumberArray
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
@@ -363,22 +363,22 @@ $root.app = (function() {
         return NumberArray;
     })();
 
-    app.SumOfNumberArray = (function() {
+    test.SumOfNumberArray = (function() {
 
         /**
          * Properties of a SumOfNumberArray.
-         * @memberof app
+         * @memberof test
          * @interface ISumOfNumberArray
          * @property {number|null} [sum] SumOfNumberArray sum
          */
 
         /**
          * Constructs a new SumOfNumberArray.
-         * @memberof app
+         * @memberof test
          * @classdesc Represents a SumOfNumberArray.
          * @implements ISumOfNumberArray
          * @constructor
-         * @param {app.ISumOfNumberArray=} [properties] Properties to set
+         * @param {test.ISumOfNumberArray=} [properties] Properties to set
          */
         function SumOfNumberArray(properties) {
             if (properties)
@@ -390,7 +390,7 @@ $root.app = (function() {
         /**
          * SumOfNumberArray sum.
          * @member {number} sum
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @instance
          */
         SumOfNumberArray.prototype.sum = 0;
@@ -398,21 +398,21 @@ $root.app = (function() {
         /**
          * Creates a new SumOfNumberArray instance using the specified properties.
          * @function create
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
-         * @param {app.ISumOfNumberArray=} [properties] Properties to set
-         * @returns {app.SumOfNumberArray} SumOfNumberArray instance
+         * @param {test.ISumOfNumberArray=} [properties] Properties to set
+         * @returns {test.SumOfNumberArray} SumOfNumberArray instance
          */
         SumOfNumberArray.create = function create(properties) {
             return new SumOfNumberArray(properties);
         };
 
         /**
-         * Encodes the specified SumOfNumberArray message. Does not implicitly {@link app.SumOfNumberArray.verify|verify} messages.
+         * Encodes the specified SumOfNumberArray message. Does not implicitly {@link test.SumOfNumberArray.verify|verify} messages.
          * @function encode
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
-         * @param {app.ISumOfNumberArray} message SumOfNumberArray message or plain object to encode
+         * @param {test.ISumOfNumberArray} message SumOfNumberArray message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -425,11 +425,11 @@ $root.app = (function() {
         };
 
         /**
-         * Encodes the specified SumOfNumberArray message, length delimited. Does not implicitly {@link app.SumOfNumberArray.verify|verify} messages.
+         * Encodes the specified SumOfNumberArray message, length delimited. Does not implicitly {@link test.SumOfNumberArray.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
-         * @param {app.ISumOfNumberArray} message SumOfNumberArray message or plain object to encode
+         * @param {test.ISumOfNumberArray} message SumOfNumberArray message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -440,18 +440,18 @@ $root.app = (function() {
         /**
          * Decodes a SumOfNumberArray message from the specified reader or buffer.
          * @function decode
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {app.SumOfNumberArray} SumOfNumberArray
+         * @returns {test.SumOfNumberArray} SumOfNumberArray
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
         SumOfNumberArray.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.SumOfNumberArray();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.test.SumOfNumberArray();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -469,10 +469,10 @@ $root.app = (function() {
         /**
          * Decodes a SumOfNumberArray message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {app.SumOfNumberArray} SumOfNumberArray
+         * @returns {test.SumOfNumberArray} SumOfNumberArray
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
@@ -485,7 +485,7 @@ $root.app = (function() {
         /**
          * Verifies a SumOfNumberArray message.
          * @function verify
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -502,15 +502,15 @@ $root.app = (function() {
         /**
          * Creates a SumOfNumberArray message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {app.SumOfNumberArray} SumOfNumberArray
+         * @returns {test.SumOfNumberArray} SumOfNumberArray
          */
         SumOfNumberArray.fromObject = function fromObject(object) {
-            if (object instanceof $root.app.SumOfNumberArray)
+            if (object instanceof $root.test.SumOfNumberArray)
                 return object;
-            var message = new $root.app.SumOfNumberArray();
+            var message = new $root.test.SumOfNumberArray();
             if (object.sum != null)
                 message.sum = Number(object.sum);
             return message;
@@ -519,9 +519,9 @@ $root.app = (function() {
         /**
          * Creates a plain object from a SumOfNumberArray message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @static
-         * @param {app.SumOfNumberArray} message SumOfNumberArray
+         * @param {test.SumOfNumberArray} message SumOfNumberArray
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
@@ -539,7 +539,7 @@ $root.app = (function() {
         /**
          * Converts this SumOfNumberArray to JSON.
          * @function toJSON
-         * @memberof app.SumOfNumberArray
+         * @memberof test.SumOfNumberArray
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
@@ -550,7 +550,7 @@ $root.app = (function() {
         return SumOfNumberArray;
     })();
 
-    return app;
+    return test;
 })();
 
 module.exports = $root;

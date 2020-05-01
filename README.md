@@ -1,8 +1,27 @@
-grpcurl -d '{"data": [41,4,5]}' -plaintext -proto ./protos/app.proto -import-path ./protos localhost:5000 app.AppController/Accumulate
+<!-- prettier-ignore -->
+grpcurl -plaintext -proto ./protos/test.proto -import-path ./protos -d @ localhost:5000 test.TestController/Accumulate <<EOM
+{
+  "data": [
+    1,
+    10,
+    100
+  ]
+}
+EOM
 
-or
+<!-- prettier-ignore -->
+grpcurl -plaintext -proto ./protos/test.proto -import-path ./protos -d @ localhost:5000 test.TestController/AccumulateStream <<EOM
+{
+  "data": [
+    1,
+    10,
+    100
+  ]
+}
+EOM
 
-grpcurl -plaintext -proto ./protos/app.proto -import-path ./protos -d @ localhost:5000 app.AppController/Accumulate <<EOM
+<!-- prettier-ignore -->
+grpcurl -plaintext -proto ./protos/test.proto -import-path ./protos -d @ localhost:5000 test.TestController/AccumulateStreamPass <<EOM
 {
   "data": [
     1,

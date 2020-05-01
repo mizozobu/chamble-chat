@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ModuleMetadata } from '@nestjs/common/interfaces';
-import { AppController } from './app.controller';
-import { MathService } from './math.service';
 
-export const appModuleMetadata: ModuleMetadata = {
+import { AppController } from './app.controller';
+import { TestModule } from './test/test.module';
+
+@Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
@@ -14,10 +14,9 @@ export const appModuleMetadata: ModuleMetadata = {
       ],
       isGlobal: true,
     }),
+    TestModule,
   ],
   controllers: [AppController],
-  providers: [MathService],
-};
-
-@Module(appModuleMetadata)
+  providers: [],
+})
 export class AppModule {}

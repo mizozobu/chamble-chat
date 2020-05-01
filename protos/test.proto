@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package app;
+package test;
 
 // Declare a service for each controller you have
-service AppController {
+service TestController {
   // Declare an rpc for each method that is called via gRPC
   rpc Accumulate (NumberArray) returns (SumOfNumberArray);
   rpc AccumulateStream(stream NumberArray) returns(stream SumOfNumberArray);

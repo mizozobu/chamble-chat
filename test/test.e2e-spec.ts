@@ -4,39 +4,39 @@ import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { app } from 'protos/types';
-import { AppController } from '../src/app.controller';
-import { MathService } from '../src/math.service';
+import { test } from 'protos/types';
+import { TestController } from '../src/test/test.controller';
+import { TestService } from '../src/test/test.service';
 
 // https://github.com/nestjs/nest/blob/master/integration/microservices/e2e/sum-grpc.spec.ts
-describe('AppController (e2e)', () => {
-  let nestApp: INestApplication;
+describe('TestController (e2e)', () => {
+  let app: INestApplication;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let client: any;
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [MathService],
+      controllers: [TestController],
+      providers: [TestService],
     }).compile();
 
-    nestApp = module.createNestApplication();
+    app = module.createNestApplication();
 
-    nestApp.connectMicroservice({
+    app.connectMicroservice({
       transport: Transport.GRPC,
       options: {
-        package: ['app'],
-        protoPath: [join(__dirname, '../protos/app.proto')],
+        package: ['test'],
+        protoPath: [join(__dirname, '../protos/test.proto')],
       },
     });
 
     // Start gRPC microservice
-    await nestApp.startAllMicroservicesAsync();
-    await nestApp.init();
+    await app.startAllMicroservicesAsync();
+    await app.init();
 
     // Load proto-buffers for test gRPC dispatch
     const proto = ProtoLoader.loadSync(
-      join(__dirname, '../protos/app.proto'),
+      join(__dirname, '../protos/test.proto'),
     ) as ProtoLoader.PackageDefinition;
 
     // Create Raw gRPC client object
@@ -44,18 +44,13 @@ describe('AppController (e2e)', () => {
     const protoGRPC = GRPC.loadPackageDefinition(proto) as any;
 
     // Create client connected to started services at standard 5000 port
-    client = new protoGRPC.app.AppController('localhost:5000', GRPC.credentials.createInsecure());
-  });
-
-  afterAll(async () => {
-    await nestApp.close();
-    client.close();
+    client = new protoGRPC.test.TestController('localhost:5000', GRPC.credentials.createInsecure());
   });
 
   it('GRPC Sending and receiving Stream from RX handler', async () => {
     const callHandler = client.AccumulateStream();
 
-    callHandler.on('data', (msg: app.ISumOfNumberArray): void => {
+    callHandler.on('data', (msg: test.ISumOfNumberArray): void => {
       expect(msg).toEqual({ sum: 15 });
       callHandler.cancel();
     });
@@ -82,7 +77,7 @@ describe('AppController (e2e)', () => {
   it('GRPC Sending and receiving Stream from Call Passthrough handler', async () => {
     const callHandler = client.AccumulateStreamPass();
 
-    callHandler.on('data', (msg: app.ISumOfNumberArray): void => {
+    callHandler.on('data', (msg: test.ISumOfNumberArray): void => {
       expect(msg).toEqual({ sum: 15 });
       callHandler.cancel();
     });
@@ -103,5 +98,10 @@ describe('AppController (e2e)', () => {
       callHandler.write({ data: [1, 2, 3, 4, 5] });
       setTimeout(() => resolve(), 1000);
     });
+  });
+
+  afterAll(async () => {
+    await app.close();
+    client.close();
   });
 });

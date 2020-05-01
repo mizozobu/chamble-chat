@@ -21,5 +21,6 @@ module.exports = {
     'prettier/prettier': ['error'],
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
   },
 };
