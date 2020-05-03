@@ -98,8 +98,8 @@ export class TestController {
    * server stream
    */
   @GrpcMethod()
-  serverStreamObservableAccumulate(req: test.IReqAccumulate): Observable<test.IReqAccumulate> {
-    const subject = new Subject();
+  serverStreamObservableAccumulate(req: test.IReqAccumulate): Observable<test.IResAccumulate> {
+    const subject = new Subject<test.IResAccumulate>();
     const { data } = req;
 
     this.logger.debug(`serverStreamObservableAccumulate req ${JSON.stringify(req)}`);

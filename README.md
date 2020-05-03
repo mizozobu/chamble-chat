@@ -91,3 +91,25 @@ grpcurl -plaintext -proto ./protos/test.proto -import-path ./protos -d @ localho
   ]
 }
 EOM
+
+
+
+grpcurl -plaintext -proto ./protos/chat.proto -import-path ./protos -d @ localhost:5000 chat.ChatController/Connect <<EOM
+{
+  "userId": 1
+}
+EOM
+
+grpcurl -plaintext -proto ./protos/chat.proto -import-path ./protos -d @ localhost:5000 chat.ChatController/Disconnect <<EOM
+{
+  "userId": 1
+}
+EOM
+
+grpcurl -plaintext -proto ./protos/chat.proto -import-path ./protos -d @ localhost:5000 chat.ChatController/SendChatMessage <<EOM
+{
+  "chatRoomId": 1,
+  "userId": 3,
+  "chatText": "Hi"
+}
+EOM

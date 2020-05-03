@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package chat;
+
+service ChatController {
+  rpc Connect (ReqConnect) returns (stream ResConnect);
+  rpc Disconnect (ReqDisconnect) returns (ResDisconnect);
+  rpc SendChatMessage (ReqSendChatMessage) returns (ResSendChatMessage);
+}
+
+message ReqConnect {
+  int32 userId = 1;
+}
+message ResConnect {
+  int32 chatRoomId = 1;
+  int32 userId = 2;
+  string chatText = 3;
+}
+
+message ReqDisconnect {
+  int32 userId = 1;
+}
+message ResDisconnect {
+  bool ok = 1;
+}
+
+message ReqSendChatMessage {
+  int32 chatRoomId = 1;
+  int32 userId = 2;
+  string chatText = 3;
+}
+message ResSendChatMessage {
+  bool ok = 1;
+}
