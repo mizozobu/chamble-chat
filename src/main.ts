@@ -1,3 +1,4 @@
+import 'source-map-support/register';
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { Transport, GrpcOptions } from '@nestjs/microservices';
@@ -6,7 +7,6 @@ import { AppModule } from './app.module';
 
 const logger = new Logger('Main');
 
-// strict type checking
 const microserviceOptions: GrpcOptions = {
   transport: Transport.GRPC,
   options: {
