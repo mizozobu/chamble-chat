@@ -17,6 +17,7 @@ module.exports = {
     node: true,
     jest: true,
   },
+  ignorePatterns: ['node_modules', 'protos/types'],
   rules: {
     'prettier/prettier': ['error'],
     'import/prefer-default-export': 'off',

@@ -11,8 +11,8 @@ const microserviceOptions: GrpcOptions = {
   transport: Transport.GRPC,
   options: {
     url: `${process.env.APP_HOST}:${process.env.APP_PORT}`,
-    package: 'test',
-    protoPath: join(__dirname, '../protos/test.proto'),
+    package: ['test'],
+    protoPath: [join(__dirname, '../protos/test.proto')],
   },
 };
 

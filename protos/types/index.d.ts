@@ -23,247 +23,310 @@ export namespace test {
         public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): TestController;
 
         /**
-         * Calls Accumulate.
-         * @param request NumberArray message or plain object
-         * @param callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * Calls UnaryAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @param callback Node-style callback called with the error, if any, and ResAccumulate
          */
-        public accumulate(request: test.INumberArray, callback: test.TestController.AccumulateCallback): void;
+        public unaryAccumulate(request: test.IReqAccumulate, callback: test.TestController.UnaryAccumulateCallback): void;
 
         /**
-         * Calls Accumulate.
-         * @param request NumberArray message or plain object
+         * Calls UnaryAccumulate.
+         * @param request ReqAccumulate message or plain object
          * @returns Promise
          */
-        public accumulate(request: test.INumberArray): Promise<test.SumOfNumberArray>;
+        public unaryAccumulate(request: test.IReqAccumulate): Promise<test.ResAccumulate>;
 
         /**
-         * Calls AccumulateStream.
-         * @param request NumberArray message or plain object
-         * @param callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * Calls ClientStreamAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @param callback Node-style callback called with the error, if any, and ResAccumulate
          */
-        public accumulateStream(request: test.INumberArray, callback: test.TestController.AccumulateStreamCallback): void;
+        public clientStreamAccumulate(request: test.IReqAccumulate, callback: test.TestController.ClientStreamAccumulateCallback): void;
 
         /**
-         * Calls AccumulateStream.
-         * @param request NumberArray message or plain object
+         * Calls ClientStreamAccumulate.
+         * @param request ReqAccumulate message or plain object
          * @returns Promise
          */
-        public accumulateStream(request: test.INumberArray): Promise<test.SumOfNumberArray>;
+        public clientStreamAccumulate(request: test.IReqAccumulate): Promise<test.ResAccumulate>;
 
         /**
-         * Calls AccumulateStreamPass.
-         * @param request NumberArray message or plain object
-         * @param callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * Calls DuplexStreamAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @param callback Node-style callback called with the error, if any, and ResAccumulate
          */
-        public accumulateStreamPass(request: test.INumberArray, callback: test.TestController.AccumulateStreamPassCallback): void;
+        public duplexStreamAccumulate(request: test.IReqAccumulate, callback: test.TestController.DuplexStreamAccumulateCallback): void;
 
         /**
-         * Calls AccumulateStreamPass.
-         * @param request NumberArray message or plain object
+         * Calls DuplexStreamAccumulate.
+         * @param request ReqAccumulate message or plain object
          * @returns Promise
          */
-        public accumulateStreamPass(request: test.INumberArray): Promise<test.SumOfNumberArray>;
+        public duplexStreamAccumulate(request: test.IReqAccumulate): Promise<test.ResAccumulate>;
+
+        /**
+         * Calls ClientStreamObservableAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @param callback Node-style callback called with the error, if any, and ResAccumulate
+         */
+        public clientStreamObservableAccumulate(request: test.IReqAccumulate, callback: test.TestController.ClientStreamObservableAccumulateCallback): void;
+
+        /**
+         * Calls ClientStreamObservableAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @returns Promise
+         */
+        public clientStreamObservableAccumulate(request: test.IReqAccumulate): Promise<test.ResAccumulate>;
+
+        /**
+         * Calls ServerStreamObservableAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @param callback Node-style callback called with the error, if any, and ResAccumulate
+         */
+        public serverStreamObservableAccumulate(request: test.IReqAccumulate, callback: test.TestController.ServerStreamObservableAccumulateCallback): void;
+
+        /**
+         * Calls ServerStreamObservableAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @returns Promise
+         */
+        public serverStreamObservableAccumulate(request: test.IReqAccumulate): Promise<test.ResAccumulate>;
+
+        /**
+         * Calls DuplexStreamObservableAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @param callback Node-style callback called with the error, if any, and ResAccumulate
+         */
+        public duplexStreamObservableAccumulate(request: test.IReqAccumulate, callback: test.TestController.DuplexStreamObservableAccumulateCallback): void;
+
+        /**
+         * Calls DuplexStreamObservableAccumulate.
+         * @param request ReqAccumulate message or plain object
+         * @returns Promise
+         */
+        public duplexStreamObservableAccumulate(request: test.IReqAccumulate): Promise<test.ResAccumulate>;
     }
 
     namespace TestController {
 
         /**
-         * Callback as used by {@link test.TestController#accumulate}.
+         * Callback as used by {@link test.TestController#unaryAccumulate}.
          * @param error Error, if any
-         * @param [response] SumOfNumberArray
+         * @param [response] ResAccumulate
          */
-        type AccumulateCallback = (error: (Error|null), response?: test.SumOfNumberArray) => void;
+        type UnaryAccumulateCallback = (error: (Error|null), response?: test.ResAccumulate) => void;
 
         /**
-         * Callback as used by {@link test.TestController#accumulateStream}.
+         * Callback as used by {@link test.TestController#clientStreamAccumulate}.
          * @param error Error, if any
-         * @param [response] SumOfNumberArray
+         * @param [response] ResAccumulate
          */
-        type AccumulateStreamCallback = (error: (Error|null), response?: test.SumOfNumberArray) => void;
+        type ClientStreamAccumulateCallback = (error: (Error|null), response?: test.ResAccumulate) => void;
 
         /**
-         * Callback as used by {@link test.TestController#accumulateStreamPass}.
+         * Callback as used by {@link test.TestController#duplexStreamAccumulate}.
          * @param error Error, if any
-         * @param [response] SumOfNumberArray
+         * @param [response] ResAccumulate
          */
-        type AccumulateStreamPassCallback = (error: (Error|null), response?: test.SumOfNumberArray) => void;
+        type DuplexStreamAccumulateCallback = (error: (Error|null), response?: test.ResAccumulate) => void;
+
+        /**
+         * Callback as used by {@link test.TestController#clientStreamObservableAccumulate}.
+         * @param error Error, if any
+         * @param [response] ResAccumulate
+         */
+        type ClientStreamObservableAccumulateCallback = (error: (Error|null), response?: test.ResAccumulate) => void;
+
+        /**
+         * Callback as used by {@link test.TestController#serverStreamObservableAccumulate}.
+         * @param error Error, if any
+         * @param [response] ResAccumulate
+         */
+        type ServerStreamObservableAccumulateCallback = (error: (Error|null), response?: test.ResAccumulate) => void;
+
+        /**
+         * Callback as used by {@link test.TestController#duplexStreamObservableAccumulate}.
+         * @param error Error, if any
+         * @param [response] ResAccumulate
+         */
+        type DuplexStreamObservableAccumulateCallback = (error: (Error|null), response?: test.ResAccumulate) => void;
     }
 
-    /** Properties of a NumberArray. */
-    interface INumberArray {
+    /** Properties of a ReqAccumulate. */
+    interface IReqAccumulate {
 
-        /** NumberArray data */
+        /** ReqAccumulate data */
         data?: (number[]|null);
     }
 
-    /** Represents a NumberArray. */
-    class NumberArray implements INumberArray {
+    /** Represents a ReqAccumulate. */
+    class ReqAccumulate implements IReqAccumulate {
 
         /**
-         * Constructs a new NumberArray.
+         * Constructs a new ReqAccumulate.
          * @param [properties] Properties to set
          */
-        constructor(properties?: test.INumberArray);
+        constructor(properties?: test.IReqAccumulate);
 
-        /** NumberArray data. */
+        /** ReqAccumulate data. */
         public data: number[];
 
         /**
-         * Creates a new NumberArray instance using the specified properties.
+         * Creates a new ReqAccumulate instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns NumberArray instance
+         * @returns ReqAccumulate instance
          */
-        public static create(properties?: test.INumberArray): test.NumberArray;
+        public static create(properties?: test.IReqAccumulate): test.ReqAccumulate;
 
         /**
-         * Encodes the specified NumberArray message. Does not implicitly {@link test.NumberArray.verify|verify} messages.
-         * @param message NumberArray message or plain object to encode
+         * Encodes the specified ReqAccumulate message. Does not implicitly {@link test.ReqAccumulate.verify|verify} messages.
+         * @param message ReqAccumulate message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: test.INumberArray, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: test.IReqAccumulate, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified NumberArray message, length delimited. Does not implicitly {@link test.NumberArray.verify|verify} messages.
-         * @param message NumberArray message or plain object to encode
+         * Encodes the specified ReqAccumulate message, length delimited. Does not implicitly {@link test.ReqAccumulate.verify|verify} messages.
+         * @param message ReqAccumulate message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: test.INumberArray, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: test.IReqAccumulate, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a NumberArray message from the specified reader or buffer.
+         * Decodes a ReqAccumulate message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns NumberArray
+         * @returns ReqAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): test.NumberArray;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): test.ReqAccumulate;
 
         /**
-         * Decodes a NumberArray message from the specified reader or buffer, length delimited.
+         * Decodes a ReqAccumulate message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns NumberArray
+         * @returns ReqAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): test.NumberArray;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): test.ReqAccumulate;
 
         /**
-         * Verifies a NumberArray message.
+         * Verifies a ReqAccumulate message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a NumberArray message from a plain object. Also converts values to their respective internal types.
+         * Creates a ReqAccumulate message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns NumberArray
+         * @returns ReqAccumulate
          */
-        public static fromObject(object: { [k: string]: any }): test.NumberArray;
+        public static fromObject(object: { [k: string]: any }): test.ReqAccumulate;
 
         /**
-         * Creates a plain object from a NumberArray message. Also converts values to other types if specified.
-         * @param message NumberArray
+         * Creates a plain object from a ReqAccumulate message. Also converts values to other types if specified.
+         * @param message ReqAccumulate
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: test.NumberArray, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: test.ReqAccumulate, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this NumberArray to JSON.
+         * Converts this ReqAccumulate to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
     }
 
-    /** Properties of a SumOfNumberArray. */
-    interface ISumOfNumberArray {
+    /** Properties of a ResAccumulate. */
+    interface IResAccumulate {
 
-        /** SumOfNumberArray sum */
+        /** ResAccumulate sum */
         sum?: (number|null);
     }
 
-    /** Represents a SumOfNumberArray. */
-    class SumOfNumberArray implements ISumOfNumberArray {
+    /** Represents a ResAccumulate. */
+    class ResAccumulate implements IResAccumulate {
 
         /**
-         * Constructs a new SumOfNumberArray.
+         * Constructs a new ResAccumulate.
          * @param [properties] Properties to set
          */
-        constructor(properties?: test.ISumOfNumberArray);
+        constructor(properties?: test.IResAccumulate);
 
-        /** SumOfNumberArray sum. */
+        /** ResAccumulate sum. */
         public sum: number;
 
         /**
-         * Creates a new SumOfNumberArray instance using the specified properties.
+         * Creates a new ResAccumulate instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns SumOfNumberArray instance
+         * @returns ResAccumulate instance
          */
-        public static create(properties?: test.ISumOfNumberArray): test.SumOfNumberArray;
+        public static create(properties?: test.IResAccumulate): test.ResAccumulate;
 
         /**
-         * Encodes the specified SumOfNumberArray message. Does not implicitly {@link test.SumOfNumberArray.verify|verify} messages.
-         * @param message SumOfNumberArray message or plain object to encode
+         * Encodes the specified ResAccumulate message. Does not implicitly {@link test.ResAccumulate.verify|verify} messages.
+         * @param message ResAccumulate message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: test.ISumOfNumberArray, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: test.IResAccumulate, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified SumOfNumberArray message, length delimited. Does not implicitly {@link test.SumOfNumberArray.verify|verify} messages.
-         * @param message SumOfNumberArray message or plain object to encode
+         * Encodes the specified ResAccumulate message, length delimited. Does not implicitly {@link test.ResAccumulate.verify|verify} messages.
+         * @param message ResAccumulate message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: test.ISumOfNumberArray, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: test.IResAccumulate, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a SumOfNumberArray message from the specified reader or buffer.
+         * Decodes a ResAccumulate message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns SumOfNumberArray
+         * @returns ResAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): test.SumOfNumberArray;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): test.ResAccumulate;
 
         /**
-         * Decodes a SumOfNumberArray message from the specified reader or buffer, length delimited.
+         * Decodes a ResAccumulate message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns SumOfNumberArray
+         * @returns ResAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): test.SumOfNumberArray;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): test.ResAccumulate;
 
         /**
-         * Verifies a SumOfNumberArray message.
+         * Verifies a ResAccumulate message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a SumOfNumberArray message from a plain object. Also converts values to their respective internal types.
+         * Creates a ResAccumulate message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns SumOfNumberArray
+         * @returns ResAccumulate
          */
-        public static fromObject(object: { [k: string]: any }): test.SumOfNumberArray;
+        public static fromObject(object: { [k: string]: any }): test.ResAccumulate;
 
         /**
-         * Creates a plain object from a SumOfNumberArray message. Also converts values to other types if specified.
-         * @param message SumOfNumberArray
+         * Creates a plain object from a ResAccumulate message. Also converts values to other types if specified.
+         * @param message ResAccumulate
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: test.SumOfNumberArray, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: test.ResAccumulate, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this SumOfNumberArray to JSON.
+         * Converts this ResAccumulate to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

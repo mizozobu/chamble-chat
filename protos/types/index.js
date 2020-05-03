@@ -51,125 +51,224 @@ $root.test = (function() {
         };
 
         /**
-         * Callback as used by {@link test.TestController#accumulate}.
+         * Callback as used by {@link test.TestController#unaryAccumulate}.
          * @memberof test.TestController
-         * @typedef AccumulateCallback
+         * @typedef UnaryAccumulateCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {test.SumOfNumberArray} [response] SumOfNumberArray
+         * @param {test.ResAccumulate} [response] ResAccumulate
          */
 
         /**
-         * Calls Accumulate.
-         * @function accumulate
+         * Calls UnaryAccumulate.
+         * @function unaryAccumulate
          * @memberof test.TestController
          * @instance
-         * @param {test.INumberArray} request NumberArray message or plain object
-         * @param {test.TestController.AccumulateCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @param {test.TestController.UnaryAccumulateCallback} callback Node-style callback called with the error, if any, and ResAccumulate
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(TestController.prototype.accumulate = function accumulate(request, callback) {
-            return this.rpcCall(accumulate, $root.test.NumberArray, $root.test.SumOfNumberArray, request, callback);
-        }, "name", { value: "Accumulate" });
+        Object.defineProperty(TestController.prototype.unaryAccumulate = function unaryAccumulate(request, callback) {
+            return this.rpcCall(unaryAccumulate, $root.test.ReqAccumulate, $root.test.ResAccumulate, request, callback);
+        }, "name", { value: "UnaryAccumulate" });
 
         /**
-         * Calls Accumulate.
-         * @function accumulate
+         * Calls UnaryAccumulate.
+         * @function unaryAccumulate
          * @memberof test.TestController
          * @instance
-         * @param {test.INumberArray} request NumberArray message or plain object
-         * @returns {Promise<test.SumOfNumberArray>} Promise
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @returns {Promise<test.ResAccumulate>} Promise
          * @variation 2
          */
 
         /**
-         * Callback as used by {@link test.TestController#accumulateStream}.
+         * Callback as used by {@link test.TestController#clientStreamAccumulate}.
          * @memberof test.TestController
-         * @typedef AccumulateStreamCallback
+         * @typedef ClientStreamAccumulateCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {test.SumOfNumberArray} [response] SumOfNumberArray
+         * @param {test.ResAccumulate} [response] ResAccumulate
          */
 
         /**
-         * Calls AccumulateStream.
-         * @function accumulateStream
+         * Calls ClientStreamAccumulate.
+         * @function clientStreamAccumulate
          * @memberof test.TestController
          * @instance
-         * @param {test.INumberArray} request NumberArray message or plain object
-         * @param {test.TestController.AccumulateStreamCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @param {test.TestController.ClientStreamAccumulateCallback} callback Node-style callback called with the error, if any, and ResAccumulate
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(TestController.prototype.accumulateStream = function accumulateStream(request, callback) {
-            return this.rpcCall(accumulateStream, $root.test.NumberArray, $root.test.SumOfNumberArray, request, callback);
-        }, "name", { value: "AccumulateStream" });
+        Object.defineProperty(TestController.prototype.clientStreamAccumulate = function clientStreamAccumulate(request, callback) {
+            return this.rpcCall(clientStreamAccumulate, $root.test.ReqAccumulate, $root.test.ResAccumulate, request, callback);
+        }, "name", { value: "ClientStreamAccumulate" });
 
         /**
-         * Calls AccumulateStream.
-         * @function accumulateStream
+         * Calls ClientStreamAccumulate.
+         * @function clientStreamAccumulate
          * @memberof test.TestController
          * @instance
-         * @param {test.INumberArray} request NumberArray message or plain object
-         * @returns {Promise<test.SumOfNumberArray>} Promise
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @returns {Promise<test.ResAccumulate>} Promise
          * @variation 2
          */
 
         /**
-         * Callback as used by {@link test.TestController#accumulateStreamPass}.
+         * Callback as used by {@link test.TestController#duplexStreamAccumulate}.
          * @memberof test.TestController
-         * @typedef AccumulateStreamPassCallback
+         * @typedef DuplexStreamAccumulateCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {test.SumOfNumberArray} [response] SumOfNumberArray
+         * @param {test.ResAccumulate} [response] ResAccumulate
          */
 
         /**
-         * Calls AccumulateStreamPass.
-         * @function accumulateStreamPass
+         * Calls DuplexStreamAccumulate.
+         * @function duplexStreamAccumulate
          * @memberof test.TestController
          * @instance
-         * @param {test.INumberArray} request NumberArray message or plain object
-         * @param {test.TestController.AccumulateStreamPassCallback} callback Node-style callback called with the error, if any, and SumOfNumberArray
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @param {test.TestController.DuplexStreamAccumulateCallback} callback Node-style callback called with the error, if any, and ResAccumulate
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(TestController.prototype.accumulateStreamPass = function accumulateStreamPass(request, callback) {
-            return this.rpcCall(accumulateStreamPass, $root.test.NumberArray, $root.test.SumOfNumberArray, request, callback);
-        }, "name", { value: "AccumulateStreamPass" });
+        Object.defineProperty(TestController.prototype.duplexStreamAccumulate = function duplexStreamAccumulate(request, callback) {
+            return this.rpcCall(duplexStreamAccumulate, $root.test.ReqAccumulate, $root.test.ResAccumulate, request, callback);
+        }, "name", { value: "DuplexStreamAccumulate" });
 
         /**
-         * Calls AccumulateStreamPass.
-         * @function accumulateStreamPass
+         * Calls DuplexStreamAccumulate.
+         * @function duplexStreamAccumulate
          * @memberof test.TestController
          * @instance
-         * @param {test.INumberArray} request NumberArray message or plain object
-         * @returns {Promise<test.SumOfNumberArray>} Promise
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @returns {Promise<test.ResAccumulate>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link test.TestController#clientStreamObservableAccumulate}.
+         * @memberof test.TestController
+         * @typedef ClientStreamObservableAccumulateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {test.ResAccumulate} [response] ResAccumulate
+         */
+
+        /**
+         * Calls ClientStreamObservableAccumulate.
+         * @function clientStreamObservableAccumulate
+         * @memberof test.TestController
+         * @instance
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @param {test.TestController.ClientStreamObservableAccumulateCallback} callback Node-style callback called with the error, if any, and ResAccumulate
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(TestController.prototype.clientStreamObservableAccumulate = function clientStreamObservableAccumulate(request, callback) {
+            return this.rpcCall(clientStreamObservableAccumulate, $root.test.ReqAccumulate, $root.test.ResAccumulate, request, callback);
+        }, "name", { value: "ClientStreamObservableAccumulate" });
+
+        /**
+         * Calls ClientStreamObservableAccumulate.
+         * @function clientStreamObservableAccumulate
+         * @memberof test.TestController
+         * @instance
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @returns {Promise<test.ResAccumulate>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link test.TestController#serverStreamObservableAccumulate}.
+         * @memberof test.TestController
+         * @typedef ServerStreamObservableAccumulateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {test.ResAccumulate} [response] ResAccumulate
+         */
+
+        /**
+         * Calls ServerStreamObservableAccumulate.
+         * @function serverStreamObservableAccumulate
+         * @memberof test.TestController
+         * @instance
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @param {test.TestController.ServerStreamObservableAccumulateCallback} callback Node-style callback called with the error, if any, and ResAccumulate
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(TestController.prototype.serverStreamObservableAccumulate = function serverStreamObservableAccumulate(request, callback) {
+            return this.rpcCall(serverStreamObservableAccumulate, $root.test.ReqAccumulate, $root.test.ResAccumulate, request, callback);
+        }, "name", { value: "ServerStreamObservableAccumulate" });
+
+        /**
+         * Calls ServerStreamObservableAccumulate.
+         * @function serverStreamObservableAccumulate
+         * @memberof test.TestController
+         * @instance
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @returns {Promise<test.ResAccumulate>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link test.TestController#duplexStreamObservableAccumulate}.
+         * @memberof test.TestController
+         * @typedef DuplexStreamObservableAccumulateCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {test.ResAccumulate} [response] ResAccumulate
+         */
+
+        /**
+         * Calls DuplexStreamObservableAccumulate.
+         * @function duplexStreamObservableAccumulate
+         * @memberof test.TestController
+         * @instance
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @param {test.TestController.DuplexStreamObservableAccumulateCallback} callback Node-style callback called with the error, if any, and ResAccumulate
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(TestController.prototype.duplexStreamObservableAccumulate = function duplexStreamObservableAccumulate(request, callback) {
+            return this.rpcCall(duplexStreamObservableAccumulate, $root.test.ReqAccumulate, $root.test.ResAccumulate, request, callback);
+        }, "name", { value: "DuplexStreamObservableAccumulate" });
+
+        /**
+         * Calls DuplexStreamObservableAccumulate.
+         * @function duplexStreamObservableAccumulate
+         * @memberof test.TestController
+         * @instance
+         * @param {test.IReqAccumulate} request ReqAccumulate message or plain object
+         * @returns {Promise<test.ResAccumulate>} Promise
          * @variation 2
          */
 
         return TestController;
     })();
 
-    test.NumberArray = (function() {
+    test.ReqAccumulate = (function() {
 
         /**
-         * Properties of a NumberArray.
+         * Properties of a ReqAccumulate.
          * @memberof test
-         * @interface INumberArray
-         * @property {Array.<number>|null} [data] NumberArray data
+         * @interface IReqAccumulate
+         * @property {Array.<number>|null} [data] ReqAccumulate data
          */
 
         /**
-         * Constructs a new NumberArray.
+         * Constructs a new ReqAccumulate.
          * @memberof test
-         * @classdesc Represents a NumberArray.
-         * @implements INumberArray
+         * @classdesc Represents a ReqAccumulate.
+         * @implements IReqAccumulate
          * @constructor
-         * @param {test.INumberArray=} [properties] Properties to set
+         * @param {test.IReqAccumulate=} [properties] Properties to set
          */
-        function NumberArray(properties) {
+        function ReqAccumulate(properties) {
             this.data = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -178,35 +277,35 @@ $root.test = (function() {
         }
 
         /**
-         * NumberArray data.
+         * ReqAccumulate data.
          * @member {Array.<number>} data
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @instance
          */
-        NumberArray.prototype.data = $util.emptyArray;
+        ReqAccumulate.prototype.data = $util.emptyArray;
 
         /**
-         * Creates a new NumberArray instance using the specified properties.
+         * Creates a new ReqAccumulate instance using the specified properties.
          * @function create
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
-         * @param {test.INumberArray=} [properties] Properties to set
-         * @returns {test.NumberArray} NumberArray instance
+         * @param {test.IReqAccumulate=} [properties] Properties to set
+         * @returns {test.ReqAccumulate} ReqAccumulate instance
          */
-        NumberArray.create = function create(properties) {
-            return new NumberArray(properties);
+        ReqAccumulate.create = function create(properties) {
+            return new ReqAccumulate(properties);
         };
 
         /**
-         * Encodes the specified NumberArray message. Does not implicitly {@link test.NumberArray.verify|verify} messages.
+         * Encodes the specified ReqAccumulate message. Does not implicitly {@link test.ReqAccumulate.verify|verify} messages.
          * @function encode
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
-         * @param {test.INumberArray} message NumberArray message or plain object to encode
+         * @param {test.IReqAccumulate} message ReqAccumulate message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        NumberArray.encode = function encode(message, writer) {
+        ReqAccumulate.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.data != null && message.data.length) {
@@ -219,33 +318,33 @@ $root.test = (function() {
         };
 
         /**
-         * Encodes the specified NumberArray message, length delimited. Does not implicitly {@link test.NumberArray.verify|verify} messages.
+         * Encodes the specified ReqAccumulate message, length delimited. Does not implicitly {@link test.ReqAccumulate.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
-         * @param {test.INumberArray} message NumberArray message or plain object to encode
+         * @param {test.IReqAccumulate} message ReqAccumulate message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        NumberArray.encodeDelimited = function encodeDelimited(message, writer) {
+        ReqAccumulate.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a NumberArray message from the specified reader or buffer.
+         * Decodes a ReqAccumulate message from the specified reader or buffer.
          * @function decode
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {test.NumberArray} NumberArray
+         * @returns {test.ReqAccumulate} ReqAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NumberArray.decode = function decode(reader, length) {
+        ReqAccumulate.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.test.NumberArray();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.test.ReqAccumulate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -268,30 +367,30 @@ $root.test = (function() {
         };
 
         /**
-         * Decodes a NumberArray message from the specified reader or buffer, length delimited.
+         * Decodes a ReqAccumulate message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {test.NumberArray} NumberArray
+         * @returns {test.ReqAccumulate} ReqAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NumberArray.decodeDelimited = function decodeDelimited(reader) {
+        ReqAccumulate.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a NumberArray message.
+         * Verifies a ReqAccumulate message.
          * @function verify
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        NumberArray.verify = function verify(message) {
+        ReqAccumulate.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.data != null && message.hasOwnProperty("data")) {
@@ -305,20 +404,20 @@ $root.test = (function() {
         };
 
         /**
-         * Creates a NumberArray message from a plain object. Also converts values to their respective internal types.
+         * Creates a ReqAccumulate message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {test.NumberArray} NumberArray
+         * @returns {test.ReqAccumulate} ReqAccumulate
          */
-        NumberArray.fromObject = function fromObject(object) {
-            if (object instanceof $root.test.NumberArray)
+        ReqAccumulate.fromObject = function fromObject(object) {
+            if (object instanceof $root.test.ReqAccumulate)
                 return object;
-            var message = new $root.test.NumberArray();
+            var message = new $root.test.ReqAccumulate();
             if (object.data) {
                 if (!Array.isArray(object.data))
-                    throw TypeError(".test.NumberArray.data: array expected");
+                    throw TypeError(".test.ReqAccumulate.data: array expected");
                 message.data = [];
                 for (var i = 0; i < object.data.length; ++i)
                     message.data[i] = Number(object.data[i]);
@@ -327,15 +426,15 @@ $root.test = (function() {
         };
 
         /**
-         * Creates a plain object from a NumberArray message. Also converts values to other types if specified.
+         * Creates a plain object from a ReqAccumulate message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @static
-         * @param {test.NumberArray} message NumberArray
+         * @param {test.ReqAccumulate} message ReqAccumulate
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        NumberArray.toObject = function toObject(message, options) {
+        ReqAccumulate.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
@@ -350,37 +449,37 @@ $root.test = (function() {
         };
 
         /**
-         * Converts this NumberArray to JSON.
+         * Converts this ReqAccumulate to JSON.
          * @function toJSON
-         * @memberof test.NumberArray
+         * @memberof test.ReqAccumulate
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        NumberArray.prototype.toJSON = function toJSON() {
+        ReqAccumulate.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return NumberArray;
+        return ReqAccumulate;
     })();
 
-    test.SumOfNumberArray = (function() {
+    test.ResAccumulate = (function() {
 
         /**
-         * Properties of a SumOfNumberArray.
+         * Properties of a ResAccumulate.
          * @memberof test
-         * @interface ISumOfNumberArray
-         * @property {number|null} [sum] SumOfNumberArray sum
+         * @interface IResAccumulate
+         * @property {number|null} [sum] ResAccumulate sum
          */
 
         /**
-         * Constructs a new SumOfNumberArray.
+         * Constructs a new ResAccumulate.
          * @memberof test
-         * @classdesc Represents a SumOfNumberArray.
-         * @implements ISumOfNumberArray
+         * @classdesc Represents a ResAccumulate.
+         * @implements IResAccumulate
          * @constructor
-         * @param {test.ISumOfNumberArray=} [properties] Properties to set
+         * @param {test.IResAccumulate=} [properties] Properties to set
          */
-        function SumOfNumberArray(properties) {
+        function ResAccumulate(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -388,35 +487,35 @@ $root.test = (function() {
         }
 
         /**
-         * SumOfNumberArray sum.
+         * ResAccumulate sum.
          * @member {number} sum
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @instance
          */
-        SumOfNumberArray.prototype.sum = 0;
+        ResAccumulate.prototype.sum = 0;
 
         /**
-         * Creates a new SumOfNumberArray instance using the specified properties.
+         * Creates a new ResAccumulate instance using the specified properties.
          * @function create
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
-         * @param {test.ISumOfNumberArray=} [properties] Properties to set
-         * @returns {test.SumOfNumberArray} SumOfNumberArray instance
+         * @param {test.IResAccumulate=} [properties] Properties to set
+         * @returns {test.ResAccumulate} ResAccumulate instance
          */
-        SumOfNumberArray.create = function create(properties) {
-            return new SumOfNumberArray(properties);
+        ResAccumulate.create = function create(properties) {
+            return new ResAccumulate(properties);
         };
 
         /**
-         * Encodes the specified SumOfNumberArray message. Does not implicitly {@link test.SumOfNumberArray.verify|verify} messages.
+         * Encodes the specified ResAccumulate message. Does not implicitly {@link test.ResAccumulate.verify|verify} messages.
          * @function encode
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
-         * @param {test.ISumOfNumberArray} message SumOfNumberArray message or plain object to encode
+         * @param {test.IResAccumulate} message ResAccumulate message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SumOfNumberArray.encode = function encode(message, writer) {
+        ResAccumulate.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.sum != null && Object.hasOwnProperty.call(message, "sum"))
@@ -425,33 +524,33 @@ $root.test = (function() {
         };
 
         /**
-         * Encodes the specified SumOfNumberArray message, length delimited. Does not implicitly {@link test.SumOfNumberArray.verify|verify} messages.
+         * Encodes the specified ResAccumulate message, length delimited. Does not implicitly {@link test.ResAccumulate.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
-         * @param {test.ISumOfNumberArray} message SumOfNumberArray message or plain object to encode
+         * @param {test.IResAccumulate} message ResAccumulate message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SumOfNumberArray.encodeDelimited = function encodeDelimited(message, writer) {
+        ResAccumulate.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a SumOfNumberArray message from the specified reader or buffer.
+         * Decodes a ResAccumulate message from the specified reader or buffer.
          * @function decode
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {test.SumOfNumberArray} SumOfNumberArray
+         * @returns {test.ResAccumulate} ResAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SumOfNumberArray.decode = function decode(reader, length) {
+        ResAccumulate.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.test.SumOfNumberArray();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.test.ResAccumulate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -467,30 +566,30 @@ $root.test = (function() {
         };
 
         /**
-         * Decodes a SumOfNumberArray message from the specified reader or buffer, length delimited.
+         * Decodes a ResAccumulate message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {test.SumOfNumberArray} SumOfNumberArray
+         * @returns {test.ResAccumulate} ResAccumulate
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SumOfNumberArray.decodeDelimited = function decodeDelimited(reader) {
+        ResAccumulate.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a SumOfNumberArray message.
+         * Verifies a ResAccumulate message.
          * @function verify
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SumOfNumberArray.verify = function verify(message) {
+        ResAccumulate.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.sum != null && message.hasOwnProperty("sum"))
@@ -500,32 +599,32 @@ $root.test = (function() {
         };
 
         /**
-         * Creates a SumOfNumberArray message from a plain object. Also converts values to their respective internal types.
+         * Creates a ResAccumulate message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {test.SumOfNumberArray} SumOfNumberArray
+         * @returns {test.ResAccumulate} ResAccumulate
          */
-        SumOfNumberArray.fromObject = function fromObject(object) {
-            if (object instanceof $root.test.SumOfNumberArray)
+        ResAccumulate.fromObject = function fromObject(object) {
+            if (object instanceof $root.test.ResAccumulate)
                 return object;
-            var message = new $root.test.SumOfNumberArray();
+            var message = new $root.test.ResAccumulate();
             if (object.sum != null)
                 message.sum = Number(object.sum);
             return message;
         };
 
         /**
-         * Creates a plain object from a SumOfNumberArray message. Also converts values to other types if specified.
+         * Creates a plain object from a ResAccumulate message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @static
-         * @param {test.SumOfNumberArray} message SumOfNumberArray
+         * @param {test.ResAccumulate} message ResAccumulate
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SumOfNumberArray.toObject = function toObject(message, options) {
+        ResAccumulate.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
@@ -537,17 +636,17 @@ $root.test = (function() {
         };
 
         /**
-         * Converts this SumOfNumberArray to JSON.
+         * Converts this ResAccumulate to JSON.
          * @function toJSON
-         * @memberof test.SumOfNumberArray
+         * @memberof test.ResAccumulate
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        SumOfNumberArray.prototype.toJSON = function toJSON() {
+        ResAccumulate.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
-        return SumOfNumberArray;
+        return ResAccumulate;
     })();
 
     return test;

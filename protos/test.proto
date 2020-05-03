@@ -2,18 +2,19 @@ syntax = "proto3";
 
 package test;
 
-// Declare a service for each controller you have
 service TestController {
-  // Declare an rpc for each method that is called via gRPC
-  rpc Accumulate (NumberArray) returns (SumOfNumberArray);
-  rpc AccumulateStream(stream NumberArray) returns(stream SumOfNumberArray);
-  rpc AccumulateStreamPass(stream NumberArray) returns(stream SumOfNumberArray);
+  rpc UnaryAccumulate(ReqAccumulate) returns (ResAccumulate);
+  rpc ClientStreamAccumulate(stream ReqAccumulate) returns (ResAccumulate);
+  // rpc ServerStreamAccumulate(ReqAccumulate) returns (stream ResAccumulate);
+  rpc DuplexStreamAccumulate(stream ReqAccumulate) returns (stream ResAccumulate);
+  rpc ClientStreamObservableAccumulate(stream ReqAccumulate) returns (ResAccumulate);
+  rpc ServerStreamObservableAccumulate(ReqAccumulate) returns (stream ResAccumulate);
+  rpc DuplexStreamObservableAccumulate(stream ReqAccumulate) returns (stream ResAccumulate);
 }
 
-// Declare the types used above
-message NumberArray {
+message ReqAccumulate {
   repeated double data = 1;
 }
-message SumOfNumberArray {
+message ResAccumulate {
   double sum = 1;
 }

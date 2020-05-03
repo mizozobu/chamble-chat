@@ -8,9 +8,10 @@ import { test } from 'protos/types';
 import { TestController } from '../src/test/test.controller';
 import { TestService } from '../src/test/test.service';
 
-// https://github.com/nestjs/nest/blob/master/integration/microservices/e2e/sum-grpc.spec.ts
+// see https://github.com/nestjs/nest/blob/master/integration/microservices/e2e/orders-grpc.spec.ts
 describe('TestController (e2e)', () => {
   let app: INestApplication;
+  let controller: TestController;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let client: any;
 
@@ -30,6 +31,9 @@ describe('TestController (e2e)', () => {
       },
     });
 
+    // Get controller instance
+    controller = app.get<TestController>(TestController);
+
     // Start gRPC microservice
     await app.startAllMicroservicesAsync();
     await app.init();
@@ -47,17 +51,38 @@ describe('TestController (e2e)', () => {
     client = new protoGRPC.test.TestController('localhost:5000', GRPC.credentials.createInsecure());
   });
 
-  it('GRPC Sending and receiving Stream from RX handler', async () => {
-    const callHandler = client.AccumulateStream();
+  it('unaryAccumulate"', () => {
+    expect(controller.unaryAccumulate({ data: [1, 2, 3, 4, 5] })).toEqual({
+      sum: 15,
+    });
+  });
 
-    callHandler.on('data', (msg: test.ISumOfNumberArray): void => {
-      expect(msg).toEqual({ sum: 15 });
-      callHandler.cancel();
+  it('clientStreamAccumulate', async () => {
+    const callHandler = client.ClientStreamAccumulate((err: Error, res: test.IResAccumulate) => {
+      if (err) {
+        throw err;
+      }
+      expect(res).toEqual({ sum: 15 });
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise((resolve, reject) => {
+      callHandler.write({ data: [1, 2, 3, 4, 5] });
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  });
+
+  it('duplexStreamAccumulate', async () => {
+    const callHandler = client.DuplexStreamAccumulate();
+
+    callHandler.on('data', (res: test.IResAccumulate): void => {
+      expect(res).toEqual({ sum: 15 });
     });
 
     callHandler.on('error', (err: Error): void => {
-      // We want to fail only on real errors while Cancellation error
-      // is expected
+      // We want to fail only on real errors while Cancellation error is expected
       if (
         String(err)
           .toLowerCase()
@@ -74,12 +99,56 @@ describe('TestController (e2e)', () => {
     });
   });
 
-  it('GRPC Sending and receiving Stream from Call Passthrough handler', async () => {
-    const callHandler = client.AccumulateStreamPass();
+  it('clientStreamObservableAccumulate', async () => {
+    const callHandler = client.ClientStreamObservableAccumulate(
+      (err: Error, res: test.IResAccumulate) => {
+        if (err) {
+          throw err;
+        }
+        expect(res).toEqual({ sum: 15 });
+      },
+    );
 
-    callHandler.on('data', (msg: test.ISumOfNumberArray): void => {
-      expect(msg).toEqual({ sum: 15 });
-      callHandler.cancel();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise((resolve, reject) => {
+      callHandler.write({ data: [1, 2, 3, 4, 5] });
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  });
+
+  it('serverStreamObservableAccumulate', async () => {
+    const callHandler = client.ServerStreamObservableAccumulate({ data: [1, 2, 3, 4, 5] });
+
+    callHandler.on('data', (res: test.IResAccumulate): void => {
+      expect(res).toEqual({ sum: 15 });
+    });
+
+    callHandler.on('error', (err: Error) => {
+      // We want to fail only on real errors while Cancellation error
+      // is expected
+      if (
+        String(err)
+          .toLowerCase()
+          .indexOf('cancelled') === -1
+      ) {
+        fail(`gRPC Stream error happened, error: ${err}`);
+      }
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise((resolve, reject) => {
+      // callHandler.write({ data: [1, 2, 3, 4, 5] });
+      setTimeout(() => resolve(), 1000);
+    });
+  });
+
+  it('duplexStreamObservableAccumulate', async () => {
+    const callHandler = client.DuplexStreamObservableAccumulate();
+
+    callHandler.on('data', (res: test.IResAccumulate): void => {
+      expect(res).toEqual({ sum: 15 });
     });
 
     callHandler.on('error', (err: Error): void => {
