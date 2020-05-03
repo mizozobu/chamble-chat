@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { TestModule } from './test/test.module';
 import { ChatModule } from './chat/chat.module';
 
@@ -13,6 +13,20 @@ import { ChatModule } from './chat/chat.module';
         '.env',
       ],
       isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
+        type: configService.get<'mysql' | 'mariadb'>('DB_TYPE'),
+        host: configService.get<string>('DATABASE_USER'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USER'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_NAME'),
+        entities: [`${__dirname}/**/*.entity{.ts,.js}`],
+        synchronize: true,
+      }),
+      inject: [ConfigService],
     }),
     TestModule,
     ChatModule,

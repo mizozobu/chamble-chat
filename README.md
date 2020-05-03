@@ -110,6 +110,6 @@ grpcurl -plaintext -proto ./protos/chat.proto -import-path ./protos -d @ localho
 {
   "chatRoomId": 1,
   "userId": 3,
-  "chatText": "Hi"
+  "text": "Hi"
 }
 EOM

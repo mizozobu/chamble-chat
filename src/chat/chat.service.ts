@@ -1,7 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Subject } from 'rxjs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { chat } from 'protos/types';
 import { ChatRoom } from '../chatRoom/chat-room';
+import { Chat } from './chat.entity';
 
 @Injectable()
 export class ChatService {
@@ -9,6 +12,11 @@ export class ChatService {
 
   private subjects: Map<number, Subject<chat.IResConnect>> = new Map();
   private chatRooms: Map<number, ChatRoom> = new Map();
+
+  constructor(
+    @InjectRepository(Chat)
+    private chatRepository: Repository<Chat>,
+  ) {}
 
   /**
    * Connect to chat. The subject is meant to be shared across all chat rooms
@@ -29,18 +37,20 @@ export class ChatService {
   /**
    * Send a message to everyone in the chat room
    */
-  public sendChatMessage(chatMessage: any): void {
+  public async sendChatMessage(chatMessage: any): Promise<void> {
     const room = this.getChatRoom(chatMessage.chatRoomId);
     if (room === undefined) {
       throw new Error(`cannot find chat room "${chatMessage.chatRoomId}"`);
     }
+
+    const newChat = await this.chatRepository.save(chatMessage);
 
     const users = room.getUsers();
 
     // eslint-disable-next-line no-restricted-syntax
     for (const [userId, subject] of this.subjects.entries()) {
       if (users.includes(userId)) {
-        subject.next(chatMessage);
+        subject.next(newChat);
         this.logger.debug(`sent chat message to "${userId}"`);
       }
     }

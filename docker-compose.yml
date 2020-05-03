@@ -1,4 +1,4 @@
-version : '3.6'
+version: '3.6'
 
 services:
   mysql:
@@ -7,6 +7,7 @@ services:
     ports:
       - 3306:3306
     environment:
+      MYSQL_DATABASE: chamble_dev
       MYSQL_ROOT_PASSWORD: password
     networks:
       - chamble_network
@@ -22,7 +23,7 @@ services:
       PMA_PASSWORD: password
     networks:
       - chamble_network
-  
+
 networks:
   chamble_network:
     driver: bridge

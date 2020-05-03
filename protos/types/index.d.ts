@@ -182,14 +182,17 @@ export namespace chat {
     /** Properties of a ResConnect. */
     interface IResConnect {
 
+        /** ResConnect id */
+        id?: (number|null);
+
         /** ResConnect chatRoomId */
         chatRoomId?: (number|null);
 
         /** ResConnect userId */
         userId?: (number|null);
 
-        /** ResConnect chatText */
-        chatText?: (string|null);
+        /** ResConnect text */
+        text?: (string|null);
     }
 
     /** Represents a ResConnect. */
@@ -201,14 +204,17 @@ export namespace chat {
          */
         constructor(properties?: chat.IResConnect);
 
+        /** ResConnect id. */
+        public id: number;
+
         /** ResConnect chatRoomId. */
         public chatRoomId: number;
 
         /** ResConnect userId. */
         public userId: number;
 
-        /** ResConnect chatText. */
-        public chatText: string;
+        /** ResConnect text. */
+        public text: string;
 
         /**
          * Creates a new ResConnect instance using the specified properties.
@@ -470,8 +476,8 @@ export namespace chat {
         /** ReqSendChatMessage userId */
         userId?: (number|null);
 
-        /** ReqSendChatMessage chatText */
-        chatText?: (string|null);
+        /** ReqSendChatMessage text */
+        text?: (string|null);
     }
 
     /** Represents a ReqSendChatMessage. */
@@ -489,8 +495,8 @@ export namespace chat {
         /** ReqSendChatMessage userId. */
         public userId: number;
 
-        /** ReqSendChatMessage chatText. */
-        public chatText: string;
+        /** ReqSendChatMessage text. */
+        public text: string;
 
         /**
          * Creates a new ReqSendChatMessage instance using the specified properties.

@@ -345,9 +345,10 @@ $root.chat = (function() {
          * Properties of a ResConnect.
          * @memberof chat
          * @interface IResConnect
+         * @property {number|null} [id] ResConnect id
          * @property {number|null} [chatRoomId] ResConnect chatRoomId
          * @property {number|null} [userId] ResConnect userId
-         * @property {string|null} [chatText] ResConnect chatText
+         * @property {string|null} [text] ResConnect text
          */
 
         /**
@@ -366,6 +367,14 @@ $root.chat = (function() {
         }
 
         /**
+         * ResConnect id.
+         * @member {number} id
+         * @memberof chat.ResConnect
+         * @instance
+         */
+        ResConnect.prototype.id = 0;
+
+        /**
          * ResConnect chatRoomId.
          * @member {number} chatRoomId
          * @memberof chat.ResConnect
@@ -382,12 +391,12 @@ $root.chat = (function() {
         ResConnect.prototype.userId = 0;
 
         /**
-         * ResConnect chatText.
-         * @member {string} chatText
+         * ResConnect text.
+         * @member {string} text
          * @memberof chat.ResConnect
          * @instance
          */
-        ResConnect.prototype.chatText = "";
+        ResConnect.prototype.text = "";
 
         /**
          * Creates a new ResConnect instance using the specified properties.
@@ -413,12 +422,14 @@ $root.chat = (function() {
         ResConnect.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
             if (message.chatRoomId != null && Object.hasOwnProperty.call(message, "chatRoomId"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatRoomId);
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.chatRoomId);
             if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.userId);
-            if (message.chatText != null && Object.hasOwnProperty.call(message, "chatText"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.chatText);
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.userId);
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.text);
             return writer;
         };
 
@@ -454,13 +465,16 @@ $root.chat = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1:
-                    message.chatRoomId = reader.int32();
+                    message.id = reader.int32();
                     break;
                 case 2:
-                    message.userId = reader.int32();
+                    message.chatRoomId = reader.int32();
                     break;
                 case 3:
-                    message.chatText = reader.string();
+                    message.userId = reader.int32();
+                    break;
+                case 4:
+                    message.text = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -497,15 +511,18 @@ $root.chat = (function() {
         ResConnect.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id))
+                    return "id: integer expected";
             if (message.chatRoomId != null && message.hasOwnProperty("chatRoomId"))
                 if (!$util.isInteger(message.chatRoomId))
                     return "chatRoomId: integer expected";
             if (message.userId != null && message.hasOwnProperty("userId"))
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
-            if (message.chatText != null && message.hasOwnProperty("chatText"))
-                if (!$util.isString(message.chatText))
-                    return "chatText: string expected";
+            if (message.text != null && message.hasOwnProperty("text"))
+                if (!$util.isString(message.text))
+                    return "text: string expected";
             return null;
         };
 
@@ -521,12 +538,14 @@ $root.chat = (function() {
             if (object instanceof $root.chat.ResConnect)
                 return object;
             var message = new $root.chat.ResConnect();
+            if (object.id != null)
+                message.id = object.id | 0;
             if (object.chatRoomId != null)
                 message.chatRoomId = object.chatRoomId | 0;
             if (object.userId != null)
                 message.userId = object.userId | 0;
-            if (object.chatText != null)
-                message.chatText = String(object.chatText);
+            if (object.text != null)
+                message.text = String(object.text);
             return message;
         };
 
@@ -544,16 +563,19 @@ $root.chat = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
+                object.id = 0;
                 object.chatRoomId = 0;
                 object.userId = 0;
-                object.chatText = "";
+                object.text = "";
             }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
             if (message.chatRoomId != null && message.hasOwnProperty("chatRoomId"))
                 object.chatRoomId = message.chatRoomId;
             if (message.userId != null && message.hasOwnProperty("userId"))
                 object.userId = message.userId;
-            if (message.chatText != null && message.hasOwnProperty("chatText"))
-                object.chatText = message.chatText;
+            if (message.text != null && message.hasOwnProperty("text"))
+                object.text = message.text;
             return object;
         };
 
@@ -953,7 +975,7 @@ $root.chat = (function() {
          * @interface IReqSendChatMessage
          * @property {number|null} [chatRoomId] ReqSendChatMessage chatRoomId
          * @property {number|null} [userId] ReqSendChatMessage userId
-         * @property {string|null} [chatText] ReqSendChatMessage chatText
+         * @property {string|null} [text] ReqSendChatMessage text
          */
 
         /**
@@ -988,12 +1010,12 @@ $root.chat = (function() {
         ReqSendChatMessage.prototype.userId = 0;
 
         /**
-         * ReqSendChatMessage chatText.
-         * @member {string} chatText
+         * ReqSendChatMessage text.
+         * @member {string} text
          * @memberof chat.ReqSendChatMessage
          * @instance
          */
-        ReqSendChatMessage.prototype.chatText = "";
+        ReqSendChatMessage.prototype.text = "";
 
         /**
          * Creates a new ReqSendChatMessage instance using the specified properties.
@@ -1023,8 +1045,8 @@ $root.chat = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatRoomId);
             if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.userId);
-            if (message.chatText != null && Object.hasOwnProperty.call(message, "chatText"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.chatText);
+            if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.text);
             return writer;
         };
 
@@ -1066,7 +1088,7 @@ $root.chat = (function() {
                     message.userId = reader.int32();
                     break;
                 case 3:
-                    message.chatText = reader.string();
+                    message.text = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1109,9 +1131,9 @@ $root.chat = (function() {
             if (message.userId != null && message.hasOwnProperty("userId"))
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
-            if (message.chatText != null && message.hasOwnProperty("chatText"))
-                if (!$util.isString(message.chatText))
-                    return "chatText: string expected";
+            if (message.text != null && message.hasOwnProperty("text"))
+                if (!$util.isString(message.text))
+                    return "text: string expected";
             return null;
         };
 
@@ -1131,8 +1153,8 @@ $root.chat = (function() {
                 message.chatRoomId = object.chatRoomId | 0;
             if (object.userId != null)
                 message.userId = object.userId | 0;
-            if (object.chatText != null)
-                message.chatText = String(object.chatText);
+            if (object.text != null)
+                message.text = String(object.text);
             return message;
         };
 
@@ -1152,14 +1174,14 @@ $root.chat = (function() {
             if (options.defaults) {
                 object.chatRoomId = 0;
                 object.userId = 0;
-                object.chatText = "";
+                object.text = "";
             }
             if (message.chatRoomId != null && message.hasOwnProperty("chatRoomId"))
                 object.chatRoomId = message.chatRoomId;
             if (message.userId != null && message.hasOwnProperty("userId"))
                 object.userId = message.userId;
-            if (message.chatText != null && message.hasOwnProperty("chatText"))
-                object.chatText = message.chatText;
+            if (message.text != null && message.hasOwnProperty("text"))
+                object.text = message.text;
             return object;
         };
 
