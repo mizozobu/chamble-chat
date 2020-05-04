@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'class-methods-use-this': 'off',
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
   },

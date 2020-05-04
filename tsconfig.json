@@ -11,7 +11,10 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
-      "protos/*": ["./protos/*"]
+      "@entities/*": ["./src/entities/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*"],
+      "@protos/*": ["./protos/*"]
     }
   },
   "exclude": ["node_modules", "dist", "protos"]

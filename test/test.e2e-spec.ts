@@ -4,9 +4,9 @@ import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { test } from 'protos/types';
-import { TestController } from '../src/test/test.controller';
-import { TestService } from '../src/test/test.service';
+import { test } from '@protos/types';
+import { TestController } from '@src/test/test.controller';
+import { TestService } from '@src/test/test.service';
 
 // see https://github.com/nestjs/nest/blob/master/integration/microservices/e2e/orders-grpc.spec.ts
 describe('TestController (e2e)', () => {

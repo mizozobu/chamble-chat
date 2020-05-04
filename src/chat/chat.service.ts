@@ -2,9 +2,9 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Subject } from 'rxjs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { chat } from 'protos/types';
-import { ChatRoom } from '../chatRoom/chat-room';
-import { Chat } from './chat.entity';
+import { chat } from '@protos/types';
+import { Chat } from '@entities/chat.entity';
+import { ChatRoom } from '@entities/chat-room.entity';
 
 @Injectable()
 export class ChatService {
@@ -45,11 +45,12 @@ export class ChatService {
 
     const newChat = await this.chatRepository.save(chatMessage);
 
-    const users = room.getUsers();
+    const users = await room.users;
+    const userIDsInChatRoom = users.map(user => user.id);
 
     // eslint-disable-next-line no-restricted-syntax
     for (const [userId, subject] of this.subjects.entries()) {
-      if (users.includes(userId)) {
+      if (userIDsInChatRoom.includes(userId)) {
         subject.next(newChat);
         this.logger.debug(`sent chat message to "${userId}"`);
       }
@@ -64,7 +65,7 @@ export class ChatService {
 
     if (room === undefined) {
       // find from DB
-      room = new ChatRoom();
+      room = new ChatRoom({ name: 'room' });
       this.chatRooms.set(room.id, room);
     }
 

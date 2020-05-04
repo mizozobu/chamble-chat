@@ -2,7 +2,7 @@ import { Controller, Logger } from '@nestjs/common';
 import { GrpcMethod, GrpcStreamMethod, GrpcStreamCall } from '@nestjs/microservices';
 import { Observable, Subject } from 'rxjs';
 import { ServerReadableStream, ServerDuplexStream } from 'grpc';
-import { test } from 'protos/types';
+import { test } from '@protos/types';
 import { TestService } from './test.service';
 
 // see https://github.com/nestjs/nest/blob/master/integration/microservices/src/grpc-advanced/advanced.grpc.controller.ts

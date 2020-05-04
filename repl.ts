@@ -16,7 +16,7 @@ import * as camelcase from 'camelcase';
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [`${__dirname}/src/**/*.entity{.ts,.js}`],
+    entities: [`${__dirname}/src/entities/*.entity{.ts,.js}`],
     synchronize: true,
   });
 
@@ -25,7 +25,7 @@ import * as camelcase from 'camelcase';
     ignoreUndefined: true,
   });
 
-  const entities = await globby(`${__dirname}/src/**/*.entity{.ts,.js}`);
+  const entities = await globby(`${__dirname}/src/entities/*.entity{.ts,.js}`);
   // eslint-disable-next-line no-restricted-syntax
   for (const path of entities) {
     // eslint-disable-next-line no-await-in-loop
