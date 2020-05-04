@@ -10,18 +10,18 @@ import { ChatRoom } from '@entities/chat-room.entity';
 export class ChatService {
   private logger = new Logger(ChatService.name);
 
-  private subjects: Map<number, Subject<chat.IResConnect>> = new Map();
+  private subjects: Map<number, Subject<Required<chat.IResConnect>>> = new Map();
   private chatRooms: Map<number, ChatRoom> = new Map();
 
   constructor(
-    @InjectRepository(Chat)
-    private chatRepository: Repository<Chat>,
+    @InjectRepository(Chat) private chatRepository: Repository<Chat>,
+    @InjectRepository(ChatRoom) private chatRoomRepository: Repository<ChatRoom>,
   ) {}
 
   /**
    * Connect to chat. The subject is meant to be shared across all chat rooms
    */
-  public registerConnection(userId: number, subject: Subject<chat.IResConnect>): void {
+  public registerConnection(userId: number, subject: Subject<Required<chat.IResConnect>>): void {
     this.subjects.set(userId, subject);
     this.logger.debug(`user "${userId}" connected to chat`);
   }
@@ -37,21 +37,23 @@ export class ChatService {
   /**
    * Send a message to everyone in the chat room
    */
-  public async sendChatMessage(chatMessage: any): Promise<void> {
-    const room = this.getChatRoom(chatMessage.chatRoomId);
-    if (room === undefined) {
-      throw new Error(`cannot find chat room "${chatMessage.chatRoomId}"`);
-    }
+  public async sendChatMessage(chatMessage: Chat): Promise<void> {
+    const newChat = (await this.chatRepository.save(chatMessage)) as Required<Chat>;
 
-    const newChat = await this.chatRepository.save(chatMessage);
-
+    const room = await this.getChatRoom(chatMessage.chatRoomId);
     const users = await room.users;
-    const userIDsInChatRoom = users.map(user => user.id);
 
     // eslint-disable-next-line no-restricted-syntax
-    for (const [userId, subject] of this.subjects.entries()) {
-      if (userIDsInChatRoom.includes(userId)) {
-        subject.next(newChat);
+    for (const userId of users.map(user => user.id)) {
+      const subject = this.subjects.get(userId);
+      if (subject !== undefined) {
+        const res: Required<chat.IResConnect> = {
+          id: newChat.id,
+          userId: newChat.userId,
+          chatRoomId: newChat.chatRoomId,
+          text: newChat.text,
+        };
+        subject.next(res);
         this.logger.debug(`sent chat message to "${userId}"`);
       }
     }
@@ -60,12 +62,11 @@ export class ChatService {
   /**
    * Get chat room. Look up cache first and then DB
    */
-  public getChatRoom(chatRoomId: number): ChatRoom {
+  public async getChatRoom(chatRoomId: number): Promise<ChatRoom> {
     let room = this.chatRooms.get(chatRoomId);
 
     if (room === undefined) {
-      // find from DB
-      room = new ChatRoom({ name: 'room' });
+      room = await this.chatRoomRepository.findOne(chatRoomId);
       this.chatRooms.set(room.id, room);
     }
 
