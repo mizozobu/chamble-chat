@@ -25,6 +25,8 @@ import { ChatModule } from './chat/chat.module';
         database: configService.get<string>('DB_NAME'),
         entities: [`${__dirname}/entities/*.entity{.ts,.js}`],
         synchronize: true,
+        supportBigNumbers: true,
+        bigNumberStrings: false,
       }),
       inject: [ConfigService],
     }),

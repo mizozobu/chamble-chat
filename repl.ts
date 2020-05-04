@@ -18,6 +18,8 @@ import * as camelcase from 'camelcase';
     database: process.env.DB_NAME,
     entities: [`${__dirname}/src/entities/*.entity{.ts,.js}`],
     synchronize: true,
+    supportBigNumbers: true,
+    bigNumberStrings: false,
   });
 
   const replServer = start({
