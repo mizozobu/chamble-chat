@@ -38,7 +38,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "source-map-support": "^0.5.19",
-    "typeorm": "^0.2.24"
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
