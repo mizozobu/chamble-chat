@@ -32,7 +32,7 @@
     "@nestjs/platform-express": "^7.0.9",
     "@nestjs/typeorm": "^7.0.0",
     "camelcase": "^6.0.0",
-    "grpc": "^1.24.2",
+    "grpc": "^1.24.9",
     "mysql2": "^2.1.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
